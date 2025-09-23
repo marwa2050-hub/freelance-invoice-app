@@ -1,86 +1,99 @@
-/* Body & container */
+/* General Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f4f6f8;
+  background-color: #f4f7fa;
   margin: 0;
+  padding: 0;
 }
+
 .container {
-  max-width: 1100px;
-  margin: 30px auto;
+  width: 80%;
+  margin: 20px auto;
+  background-color: #fff;
   padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Navigation */
-.nav {
-  background: #2c3e50;
-  padding: 12px 20px;
-  display: flex;
-  gap: 20px;
-}
-.nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
-.nav a:hover {
-  color: #1abc9c;
+h1, h2 {
+  color: #333;
 }
 
-/* Headings */
-h1 { color: #34495e; text-align: center; margin-bottom: 20px; }
-
-/* Form styling */
-.form label {
+label {
   display: block;
-  margin: 10px 0 5px;
-  font-weight: 600;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
-.form input, .form select, .form textarea {
+
+input, select, textarea {
   width: 100%;
-  padding: 8px 10px;
-  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 }
-.form button {
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button {
   padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 15px;
-  font-weight: 600;
-}
-#invoice-submit { background: #27ae60; color: #fff; }
-#invoice-cancel { background: #c0392b; color: #fff; margin-left: 10px; }
-
-/* Table styling */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 25px;
-}
-table th, table td {
-  padding: 12px;
-  border: 1px solid #ddd;
-  text-align: left;
-}
-table th {
-  background: #2980b9;
-  color: #fff;
-}
-#invoices-table tbody tr.paid { background-color: #dff0d8; }   /* green for paid */
-#invoices-table tbody tr.unpaid { background-color: #f2dede; } /* red for unpaid */
-
-/* Action buttons */
-.actions button {
-  margin-right: 5px;
-  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
 }
-.actions .edit { background: #f39c12; color: #fff; }
-.actions .delete { background: #c0392b; color: #fff; }
-.actions .toggle-paid { background: #27ae60; color: #fff; }
+
+button.secondary {
+  background-color: #6c757d;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+.actions button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.actions .edit {
+  background-color: #28a745;
+  color: white;
+}
+
+.actions .delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.actions .toggle-paid {
+  background-color: #ffc107;
+  color: white;
+}
