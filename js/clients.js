@@ -1,67 +1,103 @@
-import { clients, saveClients } from './data.js';
+// js/clients.js
+import { loadClients, saveClients } from './data.js';
+import { generateId } from './utils.js';
 
-const clientForm = document.getElementById('clientForm');
-const clientList = document.getElementById('clientList');
+const form = document.getElementById('client-form');
+const tableBody = document.querySelector('#clients-table tbody');
+
+let clients = loadClients();
 
 function renderClients() {
-    clientList.innerHTML = '';
-    clients.forEach(client => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${client.name}</td>
-            <td>${client.email}</td>
-            <td>${client.company}</td>
-            <td>
-                <button onclick="editClient(${client.id})">Edit</button>
-                <button onclick="deleteClient(${client.id})">Delete</button>
-            </td>
-        `;
-        clientList.appendChild(tr);
-    });
+  tableBody.innerHTML = '';
+  clients.forEach(c => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${escapeHtml(c.name)}</td>
+      <td>${escapeHtml(c.email)}</td>
+      <td>${escapeHtml(c.company || '')}</td>
+      <td class="actions">
+        <button data-id="${c.id}" class="edit">Edit</button>
+        <button data-id="${c.id}" class="delete">Delete</button>
+      </td>
+    `;
+    tableBody.appendChild(tr);
+  });
+
+  // Update dashboard counts if present
+  const totalClientsEl = document.getElementById('total-clients');
+  if (totalClientsEl) totalClientsEl.textContent = clients.length;
 }
 
-window.deleteClient = function(id) {
-    const index = clients.findIndex(c => c.id === id);
-    if (index > -1) {
-        clients.splice(index, 1);
-        saveClients();
-        renderClients();
-    }
+function clearForm() {
+  form.reset();
+  document.getElementById('client-id').value = '';
+  document.getElementById('client-submit').textContent = 'Add Client';
 }
 
-window.editClient = function(id) {
-    const client = clients.find(c => c.id === id);
-    if (client) {
-        document.getElementById('name').value = client.name;
-        document.getElementById('email').value = client.email;
-        document.getElementById('company').value = client.company;
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const id = document.getElementById('client-id').value;
+  const name = document.getElementById('client-name').value.trim();
+  const email = document.getElementById('client-email').value.trim();
+  const company = document.getElementById('client-company').value.trim();
+  const notes = document.getElementById('client-notes').value.trim();
 
-        clientForm.onsubmit = function(e) {
-            e.preventDefault();
-            client.name = document.getElementById('name').value;
-            client.email = document.getElementById('email').value;
-            client.company = document.getElementById('company').value;
-            saveClients();
-            renderClients();
-            clientForm.reset();
-            clientForm.onsubmit = addClient;
-        }
-    }
-}
+  if (!name || !email) {
+    alert('Name and email are required.');
+    return;
+  }
 
-function addClient(e) {
-    e.preventDefault();
-    const newClient = {
-        id: Date.now(),
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        company: document.getElementById('company').value
+  if (id) {
+    // Edit existing client
+    clients = clients.map(c => c.id === id ? {...c, name, email, company, notes} : c);
+  } else {
+    // Add new client
+    const newClient = { 
+      id: generateId(), 
+      name, 
+      email, 
+      company, 
+      notes, 
+      createdAt: new Date().toISOString() 
     };
     clients.push(newClient);
-    saveClients();
+  }
+
+  saveClients(clients);
+  renderClients();
+  clearForm();
+});
+
+document.getElementById('client-cancel').addEventListener('click', clearForm);
+
+tableBody.addEventListener('click', (e) => {
+  const id = e.target.getAttribute('data-id');
+  if (!id) return;
+
+  if (e.target.classList.contains('delete')) {
+    if (!confirm('Are you sure you want to delete this client?')) return;
+    clients = clients.filter(c => c.id !== id);
+    saveClients(clients);
     renderClients();
-    clientForm.reset();
+  } else if (e.target.classList.contains('edit')) {
+    const client = clients.find(c => c.id === id);
+    if (!client) return;
+    document.getElementById('client-id').value = client.id;
+    document.getElementById('client-name').value = client.name;
+    document.getElementById('client-email').value = client.email;
+    document.getElementById('client-company').value = client.company || '';
+    document.getElementById('client-notes').value = client.notes || '';
+    document.getElementById('client-submit').textContent = 'Update Client';
+  }
+});
+
+// Simple HTML escape
+function escapeHtml(str = '') {
+  return String(str)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;');
 }
 
-clientForm.addEventListener('submit', addClient);
+// Initial render
 renderClients();
