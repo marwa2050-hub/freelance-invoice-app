@@ -11,12 +11,12 @@ body {
   max-width: 1100px;
   margin: 20px auto;
   padding: 20px;
-  background: #fff;
+  background: #fff; /* سفید برای هماهنگی */
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* سایه مشابه فرم‌ها و جدول‌ها */
 }
 
-/* --- Navbar --- */
+/* --- Navigation --- */
 .nav {
   display: flex;
   gap: 20px;
@@ -33,7 +33,7 @@ body {
 }
 
 /* --- Headings --- */
-h1, h2, h3 {
+h1, h2, h3, p {
   color: #34495e;
   margin-bottom: 15px;
 }
@@ -47,9 +47,9 @@ h1, h2, h3 {
 }
 .card {
   padding: 15px;
-  background: #f8f9fa;
+  background: #fff; /* سفید مثل بقیه صفحات */
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
 }
 .card h3 { font-size: 1rem; margin-bottom: 10px; }
@@ -70,6 +70,7 @@ h1, h2, h3 {
   font-size: 16px;
 }
 textarea { min-height: 80px; }
+
 button {
   padding: 10px 20px;
   border: none;
@@ -110,8 +111,9 @@ th {
 /* --- Quote Section (Dashboard) --- */
 .quote-card {
   padding: 15px;
-  background: #e1f5fe;
+  background: #fff; /* سفید مثل کارت‌ها */
   border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
   margin-top: 20px;
 }
