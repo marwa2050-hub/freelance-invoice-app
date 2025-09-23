@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard - Freelance Invoice</title>
+  <title>Invoices - Freelance Invoice</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -14,34 +14,55 @@
   </nav>
 
   <main class="container">
-    <h1>Dashboard</h1>
+    <h1>Invoices</h1>
 
-    <section class="cards">
-      <div class="card">
-        <h3>Total Clients</h3>
-        <p id="total-clients">0</p>
+    <form id="invoice-form" class="form">
+      <input type="hidden" id="invoice-id" />
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <label>Client
+          <select id="invoice-client" required>
+            <option value="">Select a client</option>
+          </select>
+        </label>
+        <label>Service Title
+          <input id="invoice-title" required />
+        </label>
+        <label>Description
+          <textarea id="invoice-desc"></textarea>
+        </label>
+        <label>Amount (number)
+          <input id="invoice-amount" type="number" step="0.01" min="0" required />
+        </label>
+        <label>Date
+          <input id="invoice-date" type="date" required />
+        </label>
       </div>
-      <div class="card">
-        <h3>Total Invoices</h3>
-        <p id="total-invoices">0</p>
+      <div>
+        <button id="invoice-submit">Create / Update Invoice</button>
+        <button type="button" id="invoice-cancel" class="secondary">Cancel</button>
       </div>
-      <div class="card">
-        <h3>Total Invoice Value</h3>
-        <p id="total-value">0</p>
-      </div>
-      <div class="card">
-        <h3>Paid / Unpaid</h3>
-        <p id="paid-versus-unpaid">0 / 0</p>
-      </div>
-    </section>
+    </form>
 
-    <section id="quote" class="quote-card">
-      <h3 id="quote-text">Loading...</h3>
-      <p id="quote-author"></p>
+    <section>
+      <h2>Invoice List</h2>
+      <table id="invoices-table">
+        <thead>
+          <tr>
+            <th>Client</th>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </section>
   </main>
 
   <script type="module" src="js/main.js"></script>
   <script type="module" src="js/data.js"></script>
+  <script type="module" src="js/invoices.js"></script>
 </body>
 </html>
