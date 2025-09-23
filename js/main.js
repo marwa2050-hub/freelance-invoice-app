@@ -1,4 +1,3 @@
-// js/main.js
 import { loadClients, loadInvoices } from './data.js';
 
 async function loadQuote() {
@@ -10,11 +9,12 @@ async function loadQuote() {
     const res = await fetch('data/quotes.json');
     const arr = await res.json();
     if (!Array.isArray(arr) || arr.length === 0) throw new Error('No quotes found');
+
     const chosen = arr[Math.floor(Math.random() * arr.length)];
-    quoteTextEl.textContent = chosen.text || 'No text available';
-    quoteAuthorEl.textContent = chosen.author ? `— ${chosen.author}` : '— Unknown';
+    quoteTextEl.textContent = chosen.text || '';          // ← متن پیش‌فرض حذف شد
+    quoteAuthorEl.textContent = chosen.author ? `— ${chosen.author}` : '';
   } catch (err) {
-    quoteTextEl.textContent = 'Unable to display quote.';
+    quoteTextEl.textContent = '';                        // ← متن خطا حذف شد
     quoteAuthorEl.textContent = '';
     console.error(err);
   }
@@ -36,8 +36,7 @@ function populateDashboardCounts() {
   }
   if (paidVsEl) {
     const paid = invoices.filter(i => i.paid).length;
-    const unpaid = invoices.length - paid;
-    paidVsEl.textContent = `${paid} / ${unpaid}`;
+    paidVsEl.textContent = `${paid} / ${invoices.length - paid}`;
   }
 }
 
