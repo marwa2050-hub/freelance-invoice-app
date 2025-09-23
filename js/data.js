@@ -1,4 +1,4 @@
-// data.js
+// Store data in localStorage
 export let clients = JSON.parse(localStorage.getItem('clients')) || [];
 export let invoices = JSON.parse(localStorage.getItem('invoices')) || [];
 
