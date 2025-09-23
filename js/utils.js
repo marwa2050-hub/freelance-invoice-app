@@ -1,13 +1,12 @@
-// js/utils.js
-export function generateId() {
-  return Date.now().toString() + Math.floor(Math.random()*1000).toString();
+// utils.js
+export function generateID() {
+    return Date.now();
 }
 
-export function formatCurrency(num) {
-  const n = Number(num) || 0;
-  return n.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+export function findClientById(id) {
+    return clients.find(client => client.id === id);
 }
 
-export function findById(arr, id) {
-  return arr.find(x => x.id === id);
+export function formatCurrency(amount) {
+    return "$" + parseFloat(amount).toFixed(2);
 }
