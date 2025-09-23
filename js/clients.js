@@ -1,4 +1,3 @@
-// clients.js
 import { clients, saveClients } from './data.js';
 
 const clientForm = document.getElementById('clientForm');
@@ -36,6 +35,7 @@ window.editClient = function(id) {
         document.getElementById('name').value = client.name;
         document.getElementById('email').value = client.email;
         document.getElementById('company').value = client.company;
+
         clientForm.onsubmit = function(e) {
             e.preventDefault();
             client.name = document.getElementById('name').value;
@@ -64,5 +64,4 @@ function addClient(e) {
 }
 
 clientForm.addEventListener('submit', addClient);
-
 renderClients();
