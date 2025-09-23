@@ -1,0 +1,25 @@
+:root {
+  --bg: #f7f7fb;
+  --card: #fff;
+  --accent: #7b61ff;
+  --text: #222;
+  --muted: #666;
+}
+
+*{box-sizing:border-box;font-family: 'Tahoma','Vazir',sans-serif}
+body{margin:0;background:var(--bg);color:var(--text);direction:rtl}
+.nav{background:var(--card);padding:10px;display:flex;gap:10px;border-bottom:1px solid #eee}
+.nav a{color:var(--accent);text-decoration:none;font-weight:600}
+.container{max-width:1000px;margin:20px auto;padding:20px}
+.cards{display:flex;gap:12px;flex-wrap:wrap}
+.card{background:var(--card);padding:16px;border-radius:8px;flex:1;min-width:180px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.quote-card{margin-top:20px;background:var(--card);padding:12px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.form{display:grid;gap:8px;margin-bottom:16px}
+.form label{display:flex;flex-direction:column;gap:6px}
+.form input,.form textarea,.form select{padding:8px;border:1px solid #ddd;border-radius:6px}
+.button{padding:8px 12px;border-radius:6px;background:var(--accent);color:white;border:none;cursor:pointer}
+.secondary{background:#eee;border:none;padding:8px 10px;border-radius:6px;cursor:pointer}
+.table{width:100%;border-collapse:collapse;background:var(--card);border-radius:6px;overflow:hidden}
+.table th,.table td{padding:8px 10px;border-bottom:1px solid #f0f0f0;text-align:center}
+.table tbody tr:hover{background:#fafafa}
+.actions button{margin:0 4px}
