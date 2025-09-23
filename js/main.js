@@ -1,4 +1,3 @@
-// main.js
 import { clients, invoices } from './data.js';
 
 const totalClients = document.getElementById('totalClients');
@@ -31,4 +30,4 @@ async function loadQuote() {
 }
 
 updateDashboard();
-loadQuote();
+load
