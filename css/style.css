@@ -5,15 +5,14 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .container {
   width: 90%;
   max-width: 1100px;
   margin: 20px auto;
   padding: 20px;
-  background: #fff; /* سفید برای هماهنگی */
+  background: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* سایه مشابه فرم‌ها و جدول‌ها */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 /* --- Navigation --- */
@@ -33,7 +32,7 @@ body {
 }
 
 /* --- Headings --- */
-h1, h2, h3, p {
+h1, h2, h3 {
   color: #34495e;
   margin-bottom: 15px;
 }
@@ -47,15 +46,15 @@ h1, h2, h3, p {
 }
 .card {
   padding: 15px;
-  background: #fff; /* سفید مثل بقیه صفحات */
+  background: #f8f9fa;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   text-align: center;
 }
 .card h3 { font-size: 1rem; margin-bottom: 10px; }
 .card p { font-size: 1.2rem; font-weight: bold; }
 
-/* --- Forms (Clients & Invoices) --- */
+/* --- Forms --- */
 .form label {
   display: block;
   font-weight: bold;
@@ -67,10 +66,8 @@ h1, h2, h3, p {
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
 }
 textarea { min-height: 80px; }
-
 button {
   padding: 10px 20px;
   border: none;
@@ -108,12 +105,11 @@ th {
 .actions .delete { background-color: #c0392b; color: #fff; }
 .actions .toggle-paid { background-color: #27ae60; color: #fff; }
 
-/* --- Quote Section (Dashboard) --- */
+/* --- Quote Section --- */
 .quote-card {
   padding: 15px;
-  background: #fff; /* سفید مثل کارت‌ها */
+  background: #e1f5fe;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
   margin-top: 20px;
 }
