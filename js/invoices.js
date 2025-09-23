@@ -1,4 +1,3 @@
-// invoices.js
 import { invoices, clients, saveInvoices } from './data.js';
 
 const invoiceForm = document.getElementById('invoiceForm');
