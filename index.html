@@ -1,47 +1,25 @@
-<!doctype html>
-<html lang="fa">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard - Freelance Invoice</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <title>Freelance Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <nav class="nav">
-    <a href="index.html">داشبورد</a>
-    <a href="clients.html">مشتریان</a>
-    <a href="invoices.html">فاکتورها</a>
-  </nav>
+    <h1>Dashboard</h1>
+    <div class="stats">
+        <p>Total Clients: <span id="totalClients"></span></p>
+        <p>Total Invoices: <span id="totalInvoices"></span></p>
+        <p>Total Value: <span id="totalValue"></span></p>
+        <p>Paid Invoices: <span id="paidInvoices"></span></p>
+        <p>Unpaid Invoices: <span id="unpaidInvoices"></span></p>
+    </div>
 
-  <main class="container">
-    <h1>داشبورد</h1>
+    <div class="quote-card">
+        <p id="quoteText"></p>
+        <p id="quoteAuthor"></p>
+    </div>
 
-    <section class="cards">
-      <div class="card">
-        <h3>تعداد مشتری‌ها</h3>
-        <p id="total-clients">0</p>
-      </div>
-      <div class="card">
-        <h3>تعداد فاکتورها</h3>
-        <p id="total-invoices">0</p>
-      </div>
-      <div class="card">
-        <h3>مجموع مبلغ فاکتورها</h3>
-        <p id="total-value">0</p>
-      </div>
-      <div class="card">
-        <h3>پرداخت شده / نشده</h3>
-        <p id="paid-versus-unpaid">0 / 0</p>
-      </div>
-    </section>
-
-    <section id="quote" class="quote-card">
-      <h3 id="quote-text">در حال بارگذاری...</h3>
-      <p id="quote-author"></p>
-    </section>
-  </main>
-
-  <script type="module" src="js/main.js"></script>
-  <script type="module" src="js/data.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
