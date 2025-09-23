@@ -2,9 +2,7 @@
 
 A real-world web application for freelancers to manage clients and track invoices. Built with **HTML**, **CSS**, and **JavaScript**, this app demonstrates skills like DOM manipulation, modular JS, array methods, localStorage, and form validation. Users can add, edit, delete clients, create invoices, and see a dynamic dashboard summary.
 
----
-
-## 🚀 Features
+🚀 Features
 
 - Add, edit, and delete clients
 - Create and manage invoices
@@ -13,8 +11,6 @@ A real-world web application for freelancers to manage clients and track invoice
 - Motivational quote displayed on the dashboard
 - Fully responsive and user-friendly design
 
----
- 
 🗂 Project Structure
 
 freelance-invoice-app/
@@ -31,8 +27,6 @@ freelance-invoice-app/
 │   └── utils.js
 └── data/
     └── quotes.json
-
----
 
 🌐 Live Version
 
