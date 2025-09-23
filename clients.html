@@ -1,54 +1,37 @@
-<!doctype html>
-<html lang="fa">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Clients - Freelance Invoice</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <title>Clients</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <nav class="nav">
-    <a href="index.html">داشبورد</a>
-    <a href="clients.html">مشتریان</a>
-    <a href="invoices.html">فاکتورها</a>
-  </nav>
+    <h1>Clients</h1>
+    <form id="clientForm">
+        <label for="name">Client Name:</label>
+        <input type="text" id="name" required>
 
-  <main class="container">
-    <h1>مدیریت مشتری‌ها</h1>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
 
-    <form id="client-form" class="form">
-      <input type="hidden" id="client-id" />
-      <label>نام کامل
-        <input id="client-name" required />
-      </label>
-      <label>ایمیل
-        <input id="client-email" type="email" required />
-      </label>
-      <label>شرکت (اختیاری)
-        <input id="client-company" />
-      </label>
-      <label>یادداشت (اختیاری)
-        <textarea id="client-notes"></textarea>
-      </label>
-      <div style="display:flex;gap:8px">
-        <button id="client-submit" class="button">افزودن مشتری</button>
-        <button type="button" id="client-cancel" class="secondary">لغو</button>
-      </div>
+        <label for="company">Company:</label>
+        <input type="text" id="company">
+
+        <button type="submit">Add Client</button>
     </form>
 
-    <section>
-      <h2>لیست مشتری‌ها</h2>
-      <table id="clients-table" class="table">
+    <table>
         <thead>
-          <tr><th>نام</th><th>ایمیل</th><th>شرکت</th><th>عملیات</th></tr>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Company</th>
+                <th>Actions</th>
+            </tr>
         </thead>
-        <tbody></tbody>
-      </table>
-    </section>
-  </main>
+        <tbody id="clientList"></tbody>
+    </table>
 
-  <script type="module" src="js/main.js"></script>
-  <script type="module" src="js/data.js"></script>
-  <script type="module" src="js/clients.js"></script>
+    <script type="module" src="js/clients.js"></script>
 </body>
 </html>
