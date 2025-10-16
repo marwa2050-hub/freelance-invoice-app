@@ -1,11 +1,10 @@
-// js/clients.js
 import { loadClients, saveClients } from './data.js';
 import { generateId } from './utils.js';
 
+let clients = loadClients();
+
 const form = document.getElementById('client-form');
 const tableBody = document.querySelector('#clients-table tbody');
-
-let clients = loadClients();
 
 function renderClients() {
   tableBody.innerHTML = '';
@@ -23,7 +22,6 @@ function renderClients() {
     tableBody.appendChild(tr);
   });
 
-  // Update dashboard counts if present
   const totalClientsEl = document.getElementById('total-clients');
   if (totalClientsEl) totalClientsEl.textContent = clients.length;
 }
@@ -34,6 +32,7 @@ function clearForm() {
   document.getElementById('client-submit').textContent = 'Add Client';
 }
 
+// اضافه کردن / ویرایش client
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const id = document.getElementById('client-id').value;
@@ -48,10 +47,8 @@ form.addEventListener('submit', (e) => {
   }
 
   if (id) {
-    // Edit existing client
     clients = clients.map(c => c.id === id ? {...c, name, email, company, notes} : c);
   } else {
-    // Add new client
     const newClient = { 
       id: generateId(), 
       name, 
@@ -68,8 +65,11 @@ form.addEventListener('submit', (e) => {
   clearForm();
 });
 
-document.getElementById('client-cancel').addEventListener('click', clearForm);
+// Cancel button
+const cancelBtn = document.getElementById('client-cancel');
+if (cancelBtn) cancelBtn.addEventListener('click', clearForm);
 
+// Edit / Delete actions
 tableBody.addEventListener('click', (e) => {
   const id = e.target.getAttribute('data-id');
   if (!id) return;
