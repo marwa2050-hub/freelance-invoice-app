@@ -1,10 +1,8 @@
-// js/clients.js
 import { loadClients, saveClients } from './data.js';
 import { generateId } from './utils.js';
 
 const form = document.getElementById('client-form');
 const tableBody = document.querySelector('#clients-table tbody');
-
 let clients = loadClients();
 
 function renderClients() {
@@ -12,9 +10,9 @@ function renderClients() {
   clients.forEach(c => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${escapeHtml(c.name)}</td>
-      <td>${escapeHtml(c.email)}</td>
-      <td>${escapeHtml(c.company || '')}</td>
+      <td>${c.name}</td>
+      <td>${c.email}</td>
+      <td>${c.company || ''}</td>
       <td class="actions">
         <button data-id="${c.id}" class="edit">Edit</button>
         <button data-id="${c.id}" class="delete">Delete</button>
@@ -22,9 +20,7 @@ function renderClients() {
     `;
     tableBody.appendChild(tr);
   });
-
-  const totalClientsEl = document.getElementById('total-clients');
-  if (totalClientsEl) totalClientsEl.textContent = clients.length;
+  document.getElementById('total-clients').textContent = clients.length;
 }
 
 function clearForm() {
@@ -47,7 +43,7 @@ form.addEventListener('submit', e => {
   }
 
   if (id) {
-    clients = clients.map(c => c.id === id ? {...c, name, email, company, notes} : c);
+    clients = clients.map(c => c.id === id ? { ...c, name, email, company, notes } : c);
   } else {
     clients.push({
       id: generateId(),
@@ -67,31 +63,22 @@ form.addEventListener('submit', e => {
 document.getElementById('client-cancel')?.addEventListener('click', clearForm);
 
 tableBody.addEventListener('click', e => {
-  const id = e.target.getAttribute('data-id');
+  const id = e.target.dataset.id;
   if (!id) return;
-
   if (e.target.classList.contains('delete')) {
-    if (!confirm('Are you sure you want to delete this client?')) return;
+    if (!confirm('Delete this client?')) return;
     clients = clients.filter(c => c.id !== id);
     saveClients(clients);
     renderClients();
   } else if (e.target.classList.contains('edit')) {
-    const client = clients.find(c => c.id === id);
-    if (!client) return;
-    document.getElementById('client-id').value = client.id;
-    document.getElementById('client-name').value = client.name;
-    document.getElementById('client-email').value = client.email;
-    document.getElementById('client-company').value = client.company || '';
-    document.getElementById('client-notes').value = client.notes || '';
+    const c = clients.find(x => x.id === id);
+    document.getElementById('client-id').value = c.id;
+    document.getElementById('client-name').value = c.name;
+    document.getElementById('client-email').value = c.email;
+    document.getElementById('client-company').value = c.company || '';
+    document.getElementById('client-notes').value = c.notes || '';
     document.getElementById('client-submit').textContent = 'Update Client';
   }
 });
-
-function escapeHtml(str = '') {
-  return String(str)
-    .replaceAll('&','&amp;')
-    .replaceAll('<','&lt;')
-    .replaceAll('>','&gt;');
-}
 
 renderClients();
