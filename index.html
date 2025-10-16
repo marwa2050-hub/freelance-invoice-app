@@ -3,49 +3,39 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard - Freelance Invoice</title>
+  <title>Clients Management</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- Navigation -->
   <nav class="nav">
     <a href="index.html">Dashboard</a>
     <a href="clients.html">Clients</a>
-    <a href="invoices.html">Invoices</a>
   </nav>
 
-  <!-- Main Container -->
   <main class="container">
-    <h1>Dashboard</h1>
+    <h1>Clients</h1>
 
-    <!-- Dashboard Cards -->
-    <section class="cards">
-      <div class="card">
-        <h3>Total Clients</h3>
-        <p id="total-clients">0</p>
-      </div>
-      <div class="card">
-        <h3>Total Invoices</h3>
-        <p id="total-invoices">0</p>
-      </div>
-      <div class="card">
-        <h3>Total Invoice Value</h3>
-        <p id="total-value">$0.00</p>
-      </div>
-      <div class="card">
-        <h3>Paid / Unpaid</h3>
-        <p id="paid-versus-unpaid">0 / 0</p>
-      </div>
-    </section>
+    <!-- Form -->
+    <form id="client-form">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <button type="submit">Add Client</button>
+    </form>
 
-    <!-- Motivational Quote -->
-    <section class="quote-card">
-      <h3 id="quote-text"></h3>
-      <p id="quote-author"></p>
-    </section>
+    <!-- Table -->
+    <table id="clients-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </main>
 
-  <!-- JS Modules -->
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/clients.js"></script>
 </body>
 </html>
