@@ -1,22 +1,21 @@
-// data.js
-export let clients = JSON.parse(localStorage.getItem('clients')) || [];
-export let invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+// داده‌ها در localStorage ذخیره و بارگذاری می‌شوند
 
+export let clients = JSON.parse(localStorage.getItem('clients')) || [];
+
+// ذخیره‌سازی
 export function saveClients() {
   localStorage.setItem('clients', JSON.stringify(clients));
 }
 
-export function saveInvoices() {
-  localStorage.setItem('invoices', JSON.stringify(invoices));
-}
-
-// ✅ این دو تابع برای main.js لازم است
+// بارگذاری از localStorage
 export function loadClients() {
-  clients = JSON.parse(localStorage.getItem('clients')) || [];
+  const stored = localStorage.getItem('clients');
+  clients = stored ? JSON.parse(stored) : [];
   return clients;
 }
 
-export function loadInvoices() {
-  invoices = JSON.parse(localStorage.getItem('invoices')) || [];
-  return invoices;
+// حذف یک کارمند با اندیس
+export function deleteClient(index) {
+  clients.splice(index, 1);
+  saveClients();
 }
