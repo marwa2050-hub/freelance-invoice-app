@@ -1,4 +1,4 @@
-// Store data in localStorage
+// data.js
 export let clients = JSON.parse(localStorage.getItem('clients')) || [];
 export let invoices = JSON.parse(localStorage.getItem('invoices')) || [];
 
@@ -10,6 +10,7 @@ export function saveInvoices() {
   localStorage.setItem('invoices', JSON.stringify(invoices));
 }
 
+// ✅ این دو تابع برای main.js لازم است
 export function loadClients() {
   clients = JSON.parse(localStorage.getItem('clients')) || [];
   return clients;
