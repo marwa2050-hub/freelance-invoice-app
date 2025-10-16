@@ -1,10 +1,11 @@
+// js/clients.js
 import { loadClients, saveClients } from './data.js';
 import { generateId } from './utils.js';
 
-let clients = loadClients();
-
 const form = document.getElementById('client-form');
 const tableBody = document.querySelector('#clients-table tbody');
+
+let clients = loadClients();
 
 function renderClients() {
   tableBody.innerHTML = '';
@@ -32,8 +33,7 @@ function clearForm() {
   document.getElementById('client-submit').textContent = 'Add Client';
 }
 
-// اضافه کردن / ویرایش client
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', e => {
   e.preventDefault();
   const id = document.getElementById('client-id').value;
   const name = document.getElementById('client-name').value.trim();
@@ -49,15 +49,14 @@ form.addEventListener('submit', (e) => {
   if (id) {
     clients = clients.map(c => c.id === id ? {...c, name, email, company, notes} : c);
   } else {
-    const newClient = { 
-      id: generateId(), 
-      name, 
-      email, 
-      company, 
-      notes, 
-      createdAt: new Date().toISOString() 
-    };
-    clients.push(newClient);
+    clients.push({
+      id: generateId(),
+      name,
+      email,
+      company,
+      notes,
+      createdAt: new Date().toISOString()
+    });
   }
 
   saveClients(clients);
@@ -65,12 +64,9 @@ form.addEventListener('submit', (e) => {
   clearForm();
 });
 
-// Cancel button
-const cancelBtn = document.getElementById('client-cancel');
-if (cancelBtn) cancelBtn.addEventListener('click', clearForm);
+document.getElementById('client-cancel')?.addEventListener('click', clearForm);
 
-// Edit / Delete actions
-tableBody.addEventListener('click', (e) => {
+tableBody.addEventListener('click', e => {
   const id = e.target.getAttribute('data-id');
   if (!id) return;
 
@@ -91,7 +87,6 @@ tableBody.addEventListener('click', (e) => {
   }
 });
 
-// Simple HTML escape
 function escapeHtml(str = '') {
   return String(str)
     .replaceAll('&','&amp;')
@@ -99,5 +94,4 @@ function escapeHtml(str = '') {
     .replaceAll('>','&gt;');
 }
 
-// Initial render
 renderClients();
