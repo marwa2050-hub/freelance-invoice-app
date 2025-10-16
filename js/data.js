@@ -1,21 +1,17 @@
-// داده‌ها در localStorage ذخیره و بارگذاری می‌شوند
+// ----- Clients -----
+export function loadClients() {
+  return JSON.parse(localStorage.getItem('clients')) || [];
+}
 
-export let clients = JSON.parse(localStorage.getItem('clients')) || [];
-
-// ذخیره‌سازی
-export function saveClients() {
+export function saveClients(clients) {
   localStorage.setItem('clients', JSON.stringify(clients));
 }
 
-// بارگذاری از localStorage
-export function loadClients() {
-  const stored = localStorage.getItem('clients');
-  clients = stored ? JSON.parse(stored) : [];
-  return clients;
+// ----- Invoices -----
+export function loadInvoices() {
+  return JSON.parse(localStorage.getItem('invoices')) || [];
 }
 
-// حذف یک کارمند با اندیس
-export function deleteClient(index) {
-  clients.splice(index, 1);
-  saveClients();
+export function saveInvoices(invoices) {
+  localStorage.setItem('invoices', JSON.stringify(invoices));
 }
