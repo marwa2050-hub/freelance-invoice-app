@@ -1,17 +1,23 @@
-// ----- Clients -----
+// js/data.js
+
+// بارگذاری clients از localStorage
 export function loadClients() {
-  return JSON.parse(localStorage.getItem('clients')) || [];
+  const stored = localStorage.getItem('clients');
+  return stored ? JSON.parse(stored) : [];
 }
 
+// ذخیره clients در localStorage
 export function saveClients(clients) {
   localStorage.setItem('clients', JSON.stringify(clients));
 }
 
-// ----- Invoices -----
+// بارگذاری invoices
 export function loadInvoices() {
-  return JSON.parse(localStorage.getItem('invoices')) || [];
+  const stored = localStorage.getItem('invoices');
+  return stored ? JSON.parse(stored) : [];
 }
 
+// ذخیره invoices
 export function saveInvoices(invoices) {
   localStorage.setItem('invoices', JSON.stringify(invoices));
 }
