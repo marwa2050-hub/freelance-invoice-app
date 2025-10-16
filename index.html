@@ -3,39 +3,80 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Clients Management</title>
+  <title>Clients - Freelance Invoice</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- Navigation -->
   <nav class="nav">
     <a href="index.html">Dashboard</a>
     <a href="clients.html">Clients</a>
+    <a href="invoices.html">Invoices</a>
   </nav>
 
+  <!-- Main Container -->
   <main class="container">
-    <h1>Clients</h1>
+    <h1>Client Management</h1>
 
-    <!-- Form -->
-    <form id="client-form">
-      <input type="text" id="name" placeholder="Full Name" required />
-      <input type="email" id="email" placeholder="Email" required />
-      <button type="submit">Add Client</button>
+    <!-- Client Form -->
+    <form id="client-form" class="form">
+      <input type="hidden" id="client-id" />
+      <label>Full Name
+        <input id="client-name" required />
+      </label>
+      <label>Email
+        <input id="client-email" type="email" required />
+      </label>
+      <label>Company (optional)
+        <input id="client-company" />
+      </label>
+      <label>Notes (optional)
+        <textarea id="client-notes"></textarea>
+      </label>
+      <button id="client-submit">Add Client</button>
+      <button type="button" id="client-cancel" class="secondary">Cancel</button>
     </form>
 
-    <!-- Table -->
-    <table id="clients-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <!-- Clients List Table -->
+    <section>
+      <h2>Client List</h2>
+      <table id="clients-table" class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Company</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Dashboard Counts (optional display) -->
+    <section class="cards">
+      <div class="card">
+        <h3>Total Clients</h3>
+        <p id="total-clients">0</p>
+      </div>
+      <div class="card">
+        <h3>Total Invoices</h3>
+        <p id="total-invoices">0</p>
+      </div>
+      <div class="card">
+        <h3>Total Invoice Value</h3>
+        <p id="total-value">$0.00</p>
+      </div>
+      <div class="card">
+        <h3>Paid / Unpaid</h3>
+        <p id="paid-versus-unpaid">0 / 0</p>
+      </div>
+    </section>
   </main>
 
+  <!-- JS Modules -->
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/data.js"></script>
   <script type="module" src="js/clients.js"></script>
 </body>
 </html>
