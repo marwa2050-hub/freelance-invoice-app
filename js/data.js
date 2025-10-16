@@ -1,23 +1,25 @@
 // js/data.js
 
-// بارگذاری clients از localStorage
+// داده‌ها را از localStorage بارگذاری یا ایجاد کن
+export let clients = JSON.parse(localStorage.getItem('clients')) || [];
+export let invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+
+// توابع برای مدیریت clients
 export function loadClients() {
-  const stored = localStorage.getItem('clients');
-  return stored ? JSON.parse(stored) : [];
+  return clients;
 }
 
-// ذخیره clients در localStorage
-export function saveClients(clients) {
+export function saveClients(updatedClients) {
+  clients = updatedClients;
   localStorage.setItem('clients', JSON.stringify(clients));
 }
 
-// بارگذاری invoices
+// توابع برای مدیریت invoices
 export function loadInvoices() {
-  const stored = localStorage.getItem('invoices');
-  return stored ? JSON.parse(stored) : [];
+  return invoices;
 }
 
-// ذخیره invoices
-export function saveInvoices(invoices) {
+export function saveInvoices(updatedInvoices) {
+  invoices = updatedInvoices;
   localStorage.setItem('invoices', JSON.stringify(invoices));
 }
