@@ -1,3 +1,4 @@
+// js/invoices.js
 import { loadClients, loadInvoices, saveInvoices } from './data.js';
 import { generateId } from './utils.js';
 
@@ -6,11 +7,8 @@ const clientSelect = document.getElementById('invoice-client');
 const tableBody = document.querySelector('#invoices-table tbody');
 
 let invoices = loadInvoices();
-let clients = loadClients(); // بارگذاری مشتریان
+let clients = loadClients();
 
-// =========================
-// Populate client <select>
-// =========================
 function populateClientSelect() {
   if (!clientSelect) return;
   clientSelect.innerHTML = '<option value="">Select a client</option>';
@@ -22,19 +20,12 @@ function populateClientSelect() {
   });
 }
 
-// =========================
-// Get client name by ID
-// =========================
 function getClientName(clientId) {
   const client = clients.find(c => c.id === clientId);
   return client ? client.name : 'Unknown';
 }
 
-// =========================
-// Render invoice table
-// =========================
 function renderInvoices() {
-  if (!tableBody) return;
   tableBody.innerHTML = '';
   invoices.forEach(inv => {
     const tr = document.createElement('tr');
@@ -57,9 +48,6 @@ function renderInvoices() {
   updateDashboardCounts();
 }
 
-// =========================
-// Update dashboard counts
-// =========================
 function updateDashboardCounts() {
   const totalClientsEl = document.getElementById('total-clients');
   const totalInvoicesEl = document.getElementById('total-invoices');
@@ -78,19 +66,13 @@ function updateDashboardCounts() {
   }
 }
 
-// =========================
-// Clear form
-// =========================
 function clearForm() {
   invoiceForm.reset();
   document.getElementById('invoice-id').value = '';
   document.getElementById('invoice-submit').textContent = 'Create / Update Invoice';
 }
 
-// =========================
-// Form submit
-// =========================
-invoiceForm.addEventListener('submit', (e) => {
+invoiceForm.addEventListener('submit', e => {
   e.preventDefault();
   const id = document.getElementById('invoice-id').value;
   const clientId = clientSelect.value;
@@ -105,10 +87,8 @@ invoiceForm.addEventListener('submit', (e) => {
   }
 
   if (id) {
-    // Update existing invoice
     invoices = invoices.map(inv => inv.id === id ? {...inv, clientId, title, desc, amount, date} : inv);
   } else {
-    // Add new invoice
     invoices.push({
       id: generateId(),
       clientId,
@@ -125,15 +105,9 @@ invoiceForm.addEventListener('submit', (e) => {
   clearForm();
 });
 
-// =========================
-// Cancel button
-// =========================
 document.getElementById('invoice-cancel')?.addEventListener('click', clearForm);
 
-// =========================
-// Table actions (Edit/Delete/Toggle Paid)
-// =========================
-tableBody.addEventListener('click', (e) => {
+tableBody.addEventListener('click', e => {
   const id = e.target.getAttribute('data-id');
   if (!id) return;
 
@@ -159,8 +133,7 @@ tableBody.addEventListener('click', (e) => {
   }
 });
 
-// =========================
-// Initial load
-// =========================
+// initialize
 populateClientSelect();
 renderInvoices();
+س
